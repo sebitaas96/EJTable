@@ -99,6 +99,16 @@ public class EjTablaBasicoPorDefecto extends JFrame {
 		});
 		panelBotones.add(btnNewButton3);
 		
+		JButton btnNewButton4 = new JButton("Modificar valor");
+		btnNewButton4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				modelo.setValueAt( "Barcelona", 1, 1);
+			}
+		});
+		panelBotones.add(btnNewButton4);
+		
 		
 		
 	}
