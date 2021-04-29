@@ -90,6 +90,16 @@ public class EjTablaBasicoPorDefecto extends JFrame {
 		});
 		panelBotones.add(btnNewButton2);
 		
+		JButton btnNewButton3 = new JButton("Añadir columna");
+		btnNewButton3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Object [] habitantes = {34,45,56};
+				modelo.addColumn("Habitantes" , habitantes);
+			}
+		});
+		panelBotones.add(btnNewButton3);
+		
+		
 		
 	}
 
