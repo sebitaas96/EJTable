@@ -11,6 +11,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class EjTablaBasicoPorDefecto extends JFrame {
@@ -37,14 +39,12 @@ public class EjTablaBasicoPorDefecto extends JFrame {
 	
 	private void InicioComponentes() {
 		//Tabla con modelo  para mostrar datos
-		String [] cabecera = {"ID" , "NOMBRE" , "PAIS"};
-		Object [][] datos = {{1,"Madrid","España"}, {2 , "ROma" , "Italia"}};
+	
+		List<Ciudad> listaCiudades = new ArrayList<Ciudad>();
+		listaCiudades = inicializar();
 		
-		
-		DefaultTableModel modelo = new DefaultTableModel();
-		modelo.setColumnIdentifiers(cabecera); // Seteamos las cabeceras
-		modelo.addRow(datos[0]); //Añadir filas como un array de objetos
-		modelo.addRow(datos[1]);
+		ModeloPropio modelo = new ModeloPropio();
+		modelo.rellenarDatos(listaCiudades);
 		
 		
 		table = new JTable(modelo);
@@ -59,7 +59,7 @@ public class EjTablaBasicoPorDefecto extends JFrame {
 				System.out.println(modelo.getValueAt(table.getSelectedRow(), 1));
 				
 				//Añadir nuevos datos que no provengan del array 
-				modelo.addRow(new Object[] {2,"Paris","Francia"});
+				//modelo.addRow(new Object[] {2,"Paris","Francia"});
 				
 			}
 		});
@@ -70,7 +70,7 @@ public class EjTablaBasicoPorDefecto extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Eliminar aquella fila que tiene seleccionada
-				modelo.removeRow(table.getSelectedRow());
+				//modelo.removeRow(table.getSelectedRow());
 				
 			}
 		});
@@ -83,7 +83,7 @@ public class EjTablaBasicoPorDefecto extends JFrame {
 				int cont = 0;
 				
 				for (int y : table.getSelectedRows()) {
-					modelo.removeRow(y - cont++);
+					//modelo.removeRow(y - cont++);
 				}
 				
 			}
@@ -94,7 +94,7 @@ public class EjTablaBasicoPorDefecto extends JFrame {
 		btnNewButton3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Object [] habitantes = {34,45,56};
-				modelo.addColumn("Habitantes" , habitantes);
+				//modelo.addColumn("Habitantes" , habitantes);
 			}
 		});
 		panelBotones.add(btnNewButton3);
@@ -111,6 +111,14 @@ public class EjTablaBasicoPorDefecto extends JFrame {
 		
 		
 		
+	}
+
+	private List<Ciudad> inicializar() {
+		List<Ciudad> listaC = new ArrayList<Ciudad>();
+		listaC.add(new Ciudad(1,"Madrid","Spain"));
+		listaC.add(new Ciudad(2,"Paris","Frace"));
+		listaC.add(new Ciudad(3,"Rome","Italy"));
+		return listaC;
 	}
 
 	/**
